@@ -1,15 +1,15 @@
 ** Use case
-- Get All Books
-- Get Book Details
-- Get All Categories
-- Get All Authors
-- Get Books by Category
-- Get Books by Author
-- Search Books by Name or Author
-- Add a Review
-- Update a Review
-- User Can Order One or Many Books
-
+- Retrieve a list of all books available in the bookstore.
+- Retrieve detailed information about a specific book
+- Retrieve a list of all book categories
+- Retrieve a list of all authors
+- Retrieve a list of books within a specific category
+- Retrieve a list of books by a specific author.
+- Search for books based on title or author keywords
+- Add a review (comment and rating) for a book.
+- Update an existing review (comment and rating)
+- Allow an authenticated user to place an order for one or more books
+  
 ** Technology Stack:
 - Spring Boot, Spring Data JPA, Spring Security, Spring Validation, SpringDoc (Swagger), Postgres Database, JWT library, Jackson.
 
