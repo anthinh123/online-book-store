@@ -16,14 +16,15 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @Column(nullable = false)
     private String title;
 
-    @NonNull
+    @Column(nullable = false)
     private String author;
 
-    @NonNull
+    @Column
     private String description;
 
+    @Column(columnDefinition = "bigint default 0")
     private long price;
 }
