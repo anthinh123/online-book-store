@@ -2,6 +2,7 @@ package com.thinh.onlinebookstore.book.controller;
 
 import com.thinh.onlinebookstore.book.dto.BookDto;
 import com.thinh.onlinebookstore.book.service.BookService;
+import com.thinh.onlinebookstore.common.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public ResponseEntity<List<BookDto>> getAllBooks() {
-        return ResponseEntity.ok(bookService.getAllBooks());
+    public ResponseEntity<ApiResponse<List<BookDto>>> getAllBooks() {
+        return ApiResponse.success(bookService.getAllBooks());
     }
 }
