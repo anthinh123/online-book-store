@@ -28,4 +28,12 @@ public class BookController {
         return ApiResponse.success(bookService.getBookById(id));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<Page<BookDto>>> searchBooks(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam String query) {
+        return ApiResponse.success(bookService.searchBooks(query, page, size));
+    }
+
 }
