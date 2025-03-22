@@ -2,7 +2,6 @@ package com.thinh.onlinebookstore.common;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.server.ResponseStatusException; // Import ResponseStatusException
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -25,6 +25,6 @@ public class Book {
     @Column
     private String description;
 
-    @Column(columnDefinition = "bigint default 0")
+    @Column(columnDefinition = "bigint default 0", name = "price") // Explicitly map the 'price' column
     private long price;
 }
