@@ -1,6 +1,6 @@
-package com.thinh.onlinebookstore.book.repository;
+package com.thinh.onlinebookstore.repository;
 
-import com.thinh.onlinebookstore.book.entity.Book;
+import com.thinh.onlinebookstore.entity.Book;
 import lombok.NonNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

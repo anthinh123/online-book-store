@@ -1,4 +1,4 @@
-package com.thinh.onlinebookstore.book.entity;
+package com.thinh.onlinebookstore.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

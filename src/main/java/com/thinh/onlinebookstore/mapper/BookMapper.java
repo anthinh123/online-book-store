@@ -1,7 +1,7 @@
-package com.thinh.onlinebookstore.book.mapper;
+package com.thinh.onlinebookstore.mapper;
 
-import com.thinh.onlinebookstore.book.dto.BookDto;
-import com.thinh.onlinebookstore.book.entity.Book;
+import com.thinh.onlinebookstore.dto.BookDto;
+import com.thinh.onlinebookstore.entity.Book;
 
 public class BookMapper {
 

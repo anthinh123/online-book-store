@@ -1,9 +1,9 @@
-package com.thinh.onlinebookstore.book.service;
+package com.thinh.onlinebookstore.service;
 
-import com.thinh.onlinebookstore.book.dto.BookDto;
-import com.thinh.onlinebookstore.book.entity.Book;
-import com.thinh.onlinebookstore.book.mapper.BookMapper;
-import com.thinh.onlinebookstore.book.repository.BookRepository;
+import com.thinh.onlinebookstore.dto.BookDto;
+import com.thinh.onlinebookstore.entity.Book;
+import com.thinh.onlinebookstore.mapper.BookMapper;
+import com.thinh.onlinebookstore.repository.BookRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;

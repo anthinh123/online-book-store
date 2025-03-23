@@ -1,4 +1,4 @@
-package com.thinh.onlinebookstore.book.dto;
+package com.thinh.onlinebookstore.dto;
 
 import lombok.*;
 

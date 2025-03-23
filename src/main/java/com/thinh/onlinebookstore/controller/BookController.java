@@ -1,7 +1,7 @@
-package com.thinh.onlinebookstore.book.controller;
+package com.thinh.onlinebookstore.controller;
 
-import com.thinh.onlinebookstore.book.dto.BookDto;
-import com.thinh.onlinebookstore.book.service.BookService;
+import com.thinh.onlinebookstore.dto.BookDto;
+import com.thinh.onlinebookstore.service.BookService;
 import com.thinh.onlinebookstore.common.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
