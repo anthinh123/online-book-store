@@ -21,19 +21,19 @@ public class BookService {
     public Page<BookDto> getAllBooks(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Book> bookPage = bookRepository.findAll(pageable);
-        return bookPage.map(BookMapper::mapToDto);
+        return bookPage.map(BookMapper::toDto);
     }
 
     public BookDto getBookById(Long id) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with id: " + id));
-        return BookMapper.mapToDto(book);
+        return BookMapper.toDto(book);
     }
 
-    public Page<BookDto> searchBooks(String query, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Book> bookPage = bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(query, query, pageable);
-        return bookPage.map(BookMapper::mapToDto);
-    }
+//    public Page<BookDto> searchBooks(String query, int page, int size) {
+//        Pageable pageable = PageRequest.of(page, size);
+//        Page<Book> bookPage = bookRepository.findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(query, query, pageable);
+//        return bookPage.map(bookMapper::toDTO);
+//    }
 
 }

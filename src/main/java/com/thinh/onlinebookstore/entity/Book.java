@@ -2,6 +2,10 @@ package com.thinh.onlinebookstore.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,15 +20,36 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotNull(message = "Title is required")
+    @Size(min = 1, max = 500, message = "Title must be between 1 and 500 characters")
     private String title;
 
-    @Column(nullable = false)
-    private String author;
-
-    @Column
+    @Size(max = 1000, message = "Description cannot exceed 1000 characters")
     private String description;
 
-    @Column(columnDefinition = "bigint default 0", name = "price") // Explicitly map the 'price' column
-    private long price;
+    @NotNull(message = "Price is required")
+    @Min(value = 0, message = "Price must be greater than or equal to 0")
+    private double price;
+
+    @Column(name = "publication_date") // Added explicit column name
+    private java.time.LocalDate publicationDate;
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"), // Added referencedColumnName
+            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id") // Added referencedColumnName
+    )
+    @NotNull(message = "Author is required")
+    private List<Author> authors;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "book_category",
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"), // Added referencedColumnName
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id") // Added referencedColumnName
+    )
+    private List<Category> categories;
+
 }
