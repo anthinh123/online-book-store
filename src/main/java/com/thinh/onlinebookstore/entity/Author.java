@@ -2,7 +2,6 @@ package com.thinh.onlinebookstore.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;

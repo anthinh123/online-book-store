@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AuthorMapper {
 
-    public AuthorDto toDto(Author author) {
+    public static AuthorDto toDto(Author author) {
         if (author == null) {
             return null;
         }
