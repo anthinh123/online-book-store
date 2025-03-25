@@ -28,12 +28,30 @@ public class BookController {
         return ApiResponse.success(bookService.getBookById(id));
     }
 
-//    @GetMapping("/search")
-//    public ResponseEntity<ApiResponse<Page<BookDto>>> searchBooks(
-//            @RequestParam(defaultValue = "0") int page,
-//            @RequestParam(defaultValue = "10") int size,
-//            @RequestParam String query) {
-//        return ApiResponse.success(bookService.searchBooks(query, page, size));
-//    }
+    @GetMapping("category/{id}")
+    public ResponseEntity<ApiResponse<Page<BookDto>>> getBookByCategory(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return ApiResponse.success(bookService.getBookByCategory(id, page, size));
+    }
+
+    @GetMapping("author/{id}")
+    public ResponseEntity<ApiResponse<Page<BookDto>>> getBookByAuthor(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return ApiResponse.success(bookService.getBookByAuthor(id, page, size));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<Page<BookDto>>> searchBooks(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam String query) {
+        return ApiResponse.success(bookService.searchBooks(query, page, size));
+    }
 
 }
