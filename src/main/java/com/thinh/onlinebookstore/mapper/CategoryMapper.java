@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CategoryMapper {
 
-    public CategoryDto toDto( Category category) {
+    public static CategoryDto toDto(Category category) {
         if (category == null) {
             return null;
         }
