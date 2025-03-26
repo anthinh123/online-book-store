@@ -2,6 +2,7 @@ package com.thinh.onlinebookstore.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,10 @@ public class Review {
     @JoinColumn(name = "book_id")
     @NotNull(message = "Book is required")
     private Book book;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
 
     @Size(max = 500, message = "Comment cannot exceed 500 characters")
     private String comment;

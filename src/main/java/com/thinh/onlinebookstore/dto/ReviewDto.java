@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class ReviewDto {
     private Long id;
     private Long bookId;
+    private Long customerId;
     private String comment;
     private int rating;
 }

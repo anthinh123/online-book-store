@@ -43,6 +43,16 @@ public class ApiResponse<T> {
         return success(null, "OK");
     }
 
+    // Convenience method for created responses
+    public static <T> ResponseEntity<ApiResponse<T>> create(String message) {
+        ApiResponse<T> response = ApiResponse.<T>builder()
+                .status("created")
+                .code(HttpStatus.CREATED.value())
+                .message(message)
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
     // Convenience method for error responses
     public static ResponseEntity<ApiResponse<?>> error(HttpStatus status, String message, Object error) {
         ApiResponse<?> response = ApiResponse.builder()

@@ -31,15 +31,15 @@ public class Book {
     @Min(value = 0, message = "Price must be greater than or equal to 0")
     private double price;
 
-    @Column(name = "publication_date") // Added explicit column name
+    @Column(name = "publication_date")
     private java.time.LocalDate publicationDate;
 
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "book_author",
-            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"), // Added referencedColumnName
-            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id") // Added referencedColumnName
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id")
     )
     @NotNull(message = "Author is required")
     private List<Author> authors;
@@ -47,9 +47,11 @@ public class Book {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "book_category",
-            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"), // Added referencedColumnName
-            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id") // Added referencedColumnName
+            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
     )
     private List<Category> categories;
 
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Review> reviews;
 }

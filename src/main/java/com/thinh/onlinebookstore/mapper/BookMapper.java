@@ -1,6 +1,7 @@
 package com.thinh.onlinebookstore.mapper;
 
 import com.thinh.onlinebookstore.dto.BookDto;
+import com.thinh.onlinebookstore.dto.ReviewDto;
 import com.thinh.onlinebookstore.entity.Author;
 import com.thinh.onlinebookstore.entity.Book;
 import com.thinh.onlinebookstore.entity.Category;
@@ -35,6 +36,13 @@ public class BookMapper {
                     .map(Category::getName)
                     .collect(Collectors.toList());
             bookDto.setCategoryNames(categoryNames);
+        }
+
+        if (book.getReviews() != null) {
+            List<ReviewDto> reviewDtos = book.getReviews().stream()
+                    .map(ReviewMapper::toDto)
+                    .collect(Collectors.toList());
+            bookDto.setReviews(reviewDtos);
         }
         return bookDto;
     }

@@ -16,5 +16,6 @@ public class BookDto {
     private double price;
     private List<String> authorNames;
     private List<String> categoryNames;
+    private List<ReviewDto> reviews;
     private java.time.LocalDate publicationDate;
 }
