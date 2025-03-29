@@ -28,11 +28,11 @@ public class CustomerMapper {
         }
 
         Customer customer = new Customer();
-        customer.setId(customerDto.getId());
         customer.setName(customerDto.getName());
         customer.setEmail(customerDto.getEmail());
         customer.setPassword(customerDto.getPassword());
         customer.setPhoneNumber(customerDto.getPhoneNumber());
+
         return customer;
     }
 

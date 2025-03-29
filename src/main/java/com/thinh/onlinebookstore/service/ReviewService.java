@@ -1,6 +1,5 @@
 package com.thinh.onlinebookstore.service;
 
-import com.thinh.onlinebookstore.dto.ReviewDto;
 import com.thinh.onlinebookstore.entity.Book;
 import com.thinh.onlinebookstore.entity.Customer;
 import com.thinh.onlinebookstore.entity.Review;
