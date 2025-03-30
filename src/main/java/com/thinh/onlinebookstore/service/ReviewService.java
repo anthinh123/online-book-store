@@ -27,12 +27,10 @@ public class ReviewService {
     private CustomerRepository customerRepository;
 
     @Transactional
-    public void addReview(ReviewAddedDTO reviewDto) {
+    public void addReview(ReviewAddedDTO reviewDto, long userId) {
         Book book = bookRepository.findById(reviewDto.getBookId())
                 .orElseThrow(() -> new EntityNotFoundException("Book not found with id: " + reviewDto.getBookId()));
 
-        // TODO hard code for now. Need to get from the token
-        long userId = 1;
         Customer customer = customerRepository.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("Customer not found with id: " + userId));
 
@@ -40,10 +38,7 @@ public class ReviewService {
     }
 
     @Transactional
-    public void updateReview(ReviewUpdateDTO reviewUpdateDTO) {
-        // TODO hard code for now. Need to get from the token
-        long userId = 1;
-
+    public void updateReview(ReviewUpdateDTO reviewUpdateDTO, long userId) {
         Review existingReview = reviewRepository.findByIdAndCustomer_Id(reviewUpdateDTO.getId(), userId)
                 .orElseThrow(() -> new EntityNotFoundException("Review not found or you do not have permission to update it."));
 

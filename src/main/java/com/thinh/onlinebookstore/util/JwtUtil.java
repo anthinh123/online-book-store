@@ -1,5 +1,6 @@
 package com.thinh.onlinebookstore.util;
 
+import com.thinh.onlinebookstore.service.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -15,12 +16,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
 import io.jsonwebtoken.jackson.io.JacksonSerializer;
 
 @Component
 public class JwtUtil {
-
     private static final Logger log = LoggerFactory.getLogger(JwtUtil.class);
+    public static final String USER_ID_CLAIM = "userId";
 
     @Value("${jwt.secret}")
     private String jwtSecret;
@@ -28,9 +30,11 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private int jwtExpirationMs;
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication, UserDetailsImpl userDetails) {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();
-        return generateToken(new HashMap<>(), userPrincipal.getUsername());
+        HashMap<String, Object> claims = new HashMap<>();
+        claims.put(USER_ID_CLAIM, userDetails.getId());
+        return generateToken(claims, userPrincipal.getUsername());
     }
 
     public String generateToken(Map<String, Object> extraClaims, String username) {
@@ -46,6 +50,12 @@ public class JwtUtil {
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
+
+    }
+
+    public long getUserIdFromToken(String token) {
+        final Claims claims = getAllClaimsFromToken(token);
+        return claims.get(USER_ID_CLAIM, Long.class);
     }
 
     public Date getExpirationDateFromToken(String token) {

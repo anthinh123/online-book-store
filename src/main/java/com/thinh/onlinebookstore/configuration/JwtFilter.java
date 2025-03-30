@@ -18,6 +18,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+import static com.thinh.onlinebookstore.util.JwtUtil.USER_ID_CLAIM;
+
 @Component
 public class JwtFilter extends OncePerRequestFilter {
 
@@ -33,6 +35,8 @@ public class JwtFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtil.validateToken(jwt)) {
                 String username = jwtUtil.getUsernameFromToken(jwt);
+                Long userId = jwtUtil.getUserIdFromToken(jwt);
+                request.setAttribute(USER_ID_CLAIM, userId);
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

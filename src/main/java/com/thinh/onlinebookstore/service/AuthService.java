@@ -47,15 +47,14 @@ public class AuthService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtil.generateToken(authentication);
-
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        String jwt = jwtUtil.generateToken(authentication, userDetails);
         List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
 
         return new JwtResponse(jwt, userDetails.getName(), userDetails.getEmail(), roles);
     }
 
-    @PostMapping("/signup")
     public void registerUser(@RequestBody SignupRequest signUpRequest) {
         if (customerRepository.existsByEmail(signUpRequest.getEmail())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email is already in use!");
