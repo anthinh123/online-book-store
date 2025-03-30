@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CustomerMapper {
 
-    public CustomerDto toDto(Customer customer) {
+    public static CustomerDto toDto(Customer customer) {
         if (customer == null) {
             return null;
         }
@@ -36,25 +36,4 @@ public class CustomerMapper {
         return customer;
     }
 
-    public List<CustomerDto> toDtoList(List<Customer> customerList) {
-        if (customerList == null) {
-            return null;
-        }
-        List<CustomerDto> customerDtoList = new ArrayList<>();
-        for (Customer customer : customerList) {
-            customerDtoList.add(toDto(customer));
-        }
-        return customerDtoList;
-    }
-
-    public List<Customer> toEntityList(List<CustomerDto> customerDtoList) {
-        if (customerDtoList == null) {
-            return null;
-        }
-        List<Customer> customerList = new ArrayList<>();
-        for (CustomerDto customerDto : customerDtoList) {
-            customerList.add(toEntity(customerDto));
-        }
-        return customerList;
-    }
 }

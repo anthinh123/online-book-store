@@ -18,8 +18,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -43,7 +41,7 @@ public class AuthService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public JwtResponse authenticateUser(@RequestBody LoginRequest loginRequest) {
+    public JwtResponse authenticateUser(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -55,7 +53,7 @@ public class AuthService {
         return new JwtResponse(jwt, userDetails.getName(), userDetails.getEmail(), roles);
     }
 
-    public void registerUser(@RequestBody SignupRequest signUpRequest) {
+    public void registerUser(SignupRequest signUpRequest) {
         if (customerRepository.existsByEmail(signUpRequest.getEmail())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email is already in use!");
         }
@@ -72,5 +70,7 @@ public class AuthService {
 
         customerRepository.save(customer);
     }
+
+
 
 }
