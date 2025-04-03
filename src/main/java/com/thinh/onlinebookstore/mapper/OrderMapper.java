@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OrderMapper {
     // Order to OrderDto
-    public OrderDto toDto(Order order) {
+    public static OrderDto toDto(Order order) {
         if (order == null) {
             return null;
         }
@@ -36,7 +36,7 @@ public class OrderMapper {
     }
 
     // OrderItem to OrderItemDto
-    private OrderItemDto toOrderItemDto(OrderItem orderItem) {
+    private static OrderItemDto toOrderItemDto(OrderItem orderItem) {
         OrderItemDto orderItemDto = new OrderItemDto();
         orderItemDto.setId(orderItem.getId());
         orderItemDto.setBookId(orderItem.getBook().getId());
